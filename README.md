@@ -172,11 +172,11 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 
 ## 🔒 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 ## 👥 Authors
 
-- **Your Name** - *Initial work* - [YourGitHub](https://github.com/yourusername)
+- **Suhas KM** - *Initial work* - [Suhas KM](https://github.com/suhas-km)
 
 ## 🙏 Acknowledgments
 
@@ -188,5 +188,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you have questions or need help:
 - Open an issue on GitHub
-- Check the [documentation](docs/)
-- Review the [FAQ](docs/FAQ.md)
+- Check the [Architecture Guide](ARCHITECTURE.md)
+- Check the [API Documentation](API.md)
+- Check the [Contributing Guidelines](CONTRIBUTING.md)
+- Check the [Project Requirements Document (PRD)](PRD.md)
+- Check the [README](README.md)

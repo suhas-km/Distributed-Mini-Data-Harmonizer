@@ -111,9 +111,9 @@ The Distributed Mini Data Harmonizer is a distributed data processing pipeline d
 - Interview readiness and technical communication
 
 ### Timeline
-- **Week 1**: Core Go worker and Python orchestrator
-- **Week 2**: Integration, testing, and basic observability
-- **Week 3**: Documentation, polish, and optional features
+- **1**: Core Go worker and Python orchestrator
+- **2**: Integration, testing, and basic observability
+- **3**: Documentation, polish, and optional features
 
 ### Risk Assessment
 - **Technical Risk**: Go-Python integration complexity

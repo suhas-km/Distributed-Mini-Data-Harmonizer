@@ -9,78 +9,65 @@ The Distributed Mini Data Harmonizer is designed as a microservices architecture
 ┌─────────────────────────────────────────────────────────────────┐
 │                        Client Layer                             │
 ├─────────────────────────────────────────────────────────────────┤
-│  Web UI (Optional)  │  REST API Clients  │  CLI Tools           │
-└─────────────────────┬───────────────────┬───────────────────────┘
-                      │                   │
-                      ▼                   ▼
+│         curl/Postman        │        Python Scripts             │
+└─────────────────────────────┬───────────────────────────────────┘
+                              │
+                              ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                    API Gateway / Load Balancer                  │
-└─────────────────────┬───────────────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                   Python Orchestrator                           │
-├─────────────────────────────────────────────────────────────────┤
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐              │
-│  │   REST API  │  │ Job Manager │  │ DB Manager  │              │
-│  │             │  │             │  │             │              │
-│  └─────────────┘  └─────────────┘  └─────────────┘              │
-└─────────────────────┬───────────────────┬───────────────────────┘
-                      │                   │
-                      ▼                   ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                     Message Queue                               │
-│                   (Redis/RabbitMQ)                              │
-└─────────────────────┬───────────────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    Go Worker Pool                               │
-├─────────────────────────────────────────────────────────────────┤
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐               │
-│  │  Worker 1   │  │  Worker 2   │  │  Worker N   │               │
-│  │             │  │             │  │             │               │
-│  └─────────────┘  └─────────────┘  └─────────────┘               │
-└─────────────────────┬───────────────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    Data Storage                                 │
+│                   Python API Server                            │
+│                    (Flask/FastAPI)                             │
 ├─────────────────────────────────────────────────────────────────┤
 │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐             │
-│  │  Database   │  │ File Store  │  │   Cache     │             │
-│  │ (Metadata)  │  │ (Results)   │  │  (Redis)    │             │
+│  │   REST API  │  │ Job Manager │  │ File Handler│             │
 │  └─────────────┘  └─────────────┘  └─────────────┘             │
+└─────────────────────┬───────────────────┬───────────────────────┘
+                      │                   │
+                      ▼                   ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    Go Worker Service                           │
+│                   (HTTP Server)                                │
+├─────────────────────────────────────────────────────────────────┤
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐             │
+│  │  Processor  │  │  Validator  │  │ Harmonizer  │             │
+│  └─────────────┘  └─────────────┘  └─────────────┘             │
+└─────────────────────┬───────────────────────────────────────────┘
+                      │
+                      ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    Local Storage                                │
+├─────────────────────────────────────────────────────────────────┤
+│  ┌─────────────┐  ┌─────────────┐                               │
+│  │   SQLite    │  │ File System │                               │
+│  │ (Metadata)  │  │ (Results)   │                               │
+│  └─────────────┘  └─────────────┘                               │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ### Technology Stack
 
 #### Core Technologies
-- **Python 3.8+**: Orchestration, API, and business logic
-- **Go 1.19+**: High-performance data processing workers
-- **SQLite/PostgreSQL**: Persistent data storage
-- **Redis**: Caching and message queuing (optional)
+- **Python 3.8+**: REST API and job orchestration
+- **Go 1.19+**: Concurrent data processing
+- **SQLite**: Local database for job metadata
+- **File System**: Local storage for input/output files
 
 #### Frameworks and Libraries
 - **Python**:
-  - Flask/FastAPI: REST API framework
-  - SQLAlchemy: Database ORM
-  - Celery/RQ: Task queue management
-  - Pydantic: Data validation
+  - Flask: Simple REST API framework
+  - sqlite3: Built-in database driver
+  - requests: HTTP client for Go worker communication
   - pytest: Testing framework
 
 - **Go**:
-  - Gorilla Mux: HTTP routing
-  - GORM: Database ORM
-  - Testify: Testing utilities
-  - Logrus: Structured logging
+  - net/http: Built-in HTTP server
+  - encoding/json: JSON processing
+  - encoding/csv: CSV file handling
+  - sync: Concurrency primitives
 
-#### Infrastructure
-- **Docker**: Containerization
-- **Docker Compose**: Local development
-- **Prometheus**: Metrics collection
-- **Grafana**: Monitoring dashboards
+#### Development Tools
+- **Git**: Version control
+- **Make**: Build automation (optional)
+- **Basic logging**: Simple file-based logging
 
 ### Component Architecture
 
@@ -461,43 +448,28 @@ var (
 
 ### Deployment Architecture
 
-#### Development Environment
-```yaml
-# docker-compose.yml
-version: '3.8'
-services:
-  api:
-    build: ./python-api
-    ports:
-      - "8080:8080"
-    depends_on:
-      - database
-      - redis
-  
-  worker:
-    build: ./go-worker
-    ports:
-      - "8081:8081"
-    depends_on:
-      - database
-  
-  database:
-    image: postgres:13
-    environment:
-      POSTGRES_DB: harmonizer
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: password
-  
-  redis:
-    image: redis:6-alpine
+#### Local Development Setup
+```bash
+# Terminal 1: Start Python API
+cd python-api
+python app.py
+# Runs on http://localhost:8080
+
+# Terminal 2: Start Go Worker
+cd go-worker
+go run main.go
+# Runs on http://localhost:8081
+
+# Terminal 3: Initialize SQLite database
+python scripts/init_db.py
 ```
 
-#### Production Considerations
-- Container orchestration (Kubernetes/Docker Swarm)
-- Load balancing and auto-scaling
-- Database clustering and replication
-- Backup and disaster recovery
-- CI/CD pipeline integration
+#### Simple Production Deployment
+- Single server deployment
+- Process managers (systemd, supervisor)
+- Basic reverse proxy (nginx - optional)
+- File-based backups
+- Simple monitoring with log files
 
 ### Design Decisions
 

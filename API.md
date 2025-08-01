@@ -3,33 +3,20 @@
 
 ### Base URL
 ```
-Development: http://localhost:8080/api/v1
-Production: https://your-domain.com/api/v1
+Local Development: http://localhost:8080/api/v1
 ```
 
 ### Authentication
 
-#### API Key Authentication
-Include your API key in the request header:
-```http
-Authorization: Bearer your-api-key-here
-```
+**Simple Development Setup**: No authentication required for local development.
 
-#### JWT Authentication
-For user-based authentication, include JWT token:
+**Optional Basic Auth** (if needed):
 ```http
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+Authorization: Basic dXNlcjpwYXNzd29yZA==
 ```
 
 ### Rate Limiting
-- **Rate Limit**: 100 requests per minute per API key
-- **Burst Limit**: 10 requests per second
-- **Headers**: Rate limit information is returned in response headers:
-  ```http
-  X-RateLimit-Limit: 100
-  X-RateLimit-Remaining: 95
-  X-RateLimit-Reset: 1642694400
-  ```
+**Local Development**: No rate limiting implemented (keep it simple).
 
 ## Endpoints
 
@@ -486,53 +473,20 @@ curl -H "Authorization: Bearer your-api-key" \
   -o processed_data.csv
 ```
 
-## Webhooks (Optional)
+## Simple Local Development
 
-### Webhook Configuration
-Configure webhooks to receive job completion notifications:
+### File Limits
+- **File Upload**: 100MB max file size (configurable)
+- **Concurrent Jobs**: 3 simultaneous jobs (to prevent resource exhaustion)
+- **Result Storage**: Files stored locally in `./results/` directory
 
-```http
-POST /api/v1/webhooks
+### Basic Configuration
+Edit `config.py` to adjust:
+```python
+# config.py
+MAX_FILE_SIZE = 100 * 1024 * 1024  # 100MB
+MAX_CONCURRENT_JOBS = 3
+RESULTS_DIR = "./results"
+UPLOADS_DIR = "./uploads"
+DATABASE_PATH = "./data/harmonizer.db"
 ```
-
-**Request:**
-```json
-{
-  "url": "https://your-app.com/webhook/harmonizer",
-  "events": ["job.completed", "job.failed"],
-  "secret": "your-webhook-secret"
-}
-```
-
-### Webhook Payload
-```json
-{
-  "event": "job.completed",
-  "job_id": "123e4567-e89b-12d3-a456-426614174000",
-  "timestamp": "2024-01-15T10:33:45Z",
-  "data": {
-    "status": "completed",
-    "metrics": {
-      "records_processed": 10000,
-      "processing_time_seconds": 210
-    },
-    "download_url": "/api/v1/jobs/123e4567-e89b-12d3-a456-426614174000/result"
-  }
-}
-```
-
-## Rate Limits and Quotas
-
-### Default Limits
-- **API Calls**: 100 requests/minute
-- **File Upload**: 100MB max file size
-- **Concurrent Jobs**: 5 per user
-- **Result Storage**: 7 days retention
-
-### Enterprise Limits
-- **API Calls**: 1000 requests/minute
-- **File Upload**: 1GB max file size
-- **Concurrent Jobs**: 50 per user
-- **Result Storage**: 30 days retention
-
-Contact support for custom limits and enterprise features.
