@@ -1,0 +1,101 @@
+patient_id,first_name,middle_name,last_name,date_of_birth,gender,address,city,state,zip_code,phone_number,email,blood_type,ethnicity,race,marital_status,insurance_type,insurance_id,primary_care_provider,provider_id
+PT-9236-26,Jennifer,T,Allen,1957-09-09,Female,5549 Jefferson Blvd,Arlington,TX,33506,3568246535,jenniferallen35@outlook.com,AB+,Declined,Black or African American,Married,Medicaid,INS-498424,Dr. Sarah Jackson,PROV21259
+103372fc,Mary,K,Carter,1965-11-24,Unknown,7116 Monroe Ln,Riverside,NM,23082,405.901.4744,marycarter45@yahoo.com,B+,Hispanic or Latino,American Indian or Alaska Native,Single,Other,INS-452886," Robert Williams",PROV14325
+c0d09a0c,Thomas,Y,Thompson,2004-12-15,Unknown,5501 Washington Pl,Burlington,MT,17240,467.543.6726,,A+,Unknown,Unknown,Unknown,Self-pay,INS-907149," Sandra Robinson",PROV48333
+PT-789398,Robert,I,Garcia,1978-02-09,Male,120 Clinton St,Manchester,ND,70056,(340) 675-6948,,,Declined,Other,Widowed,Other,INS-548537,Dr. Mark King,PROV33062
+PT-P56212,Michael,M,Gonzalez,1990-09-04,Male,8723 Pine Rd,Greenville,MI,37649,235-898-6099,,A-,Not Hispanic or Latino,American Indian or Alaska Native,Divorced,Medicaid,INS-951565," George Smith",PROV83059
+PT-6208-14,Nancy,Z,Perez,1999-02-02,Unknown,9312 Valley Way,Arlington,RI,50426,301.927.3274,,AB+,Unknown,Multiple,Widowed,Medicare,INS-421298,Dr. Kevin Wright,PROV17246
+PT-8815-59,George,M,Campbell,1948-08-16,Male,9544 Spring Dr,Riverside,MT,14994,3778571040,gcampbell@aol.com,AB-,Unknown,White,Divorced,Medicaid,INS-354005," William Lee",PROV56314
+PT-260146,Dorothy,Z,Gonzalez,1952-04-09,Unknown,1093 Cedar Pl,Lexington,WI,27803,(479) 687-8415,dorothygonzalez75@icloud.com,,Unknown,White,Unknown,Private,INS-435297,Dr. Emily Lee,PROV39353
+f781b9c6,Matthew,W,Anderson,1964-05-24,Unknown,9674 Clinton Way,Fairview,NJ,92699,937.494.4556,matthew.anderson@icloud.com,AB-,Declined,Declined,Widowed,Private,INS-641833,Dr. Margaret Williams,PROV34849
+eba85f33,Dorothy,T,Thomas,1994-12-23,Female,5238 Highland Dr,Newport,IN,92979,839-726-8739,dthomas@icloud.com,A+,Not Hispanic or Latino,Declined,Divorced,Private,INS-872541," Brian Hill",PROV41404
+PT-4962-20,Nancy,Q,Roberts,1963-03-12,Other,9947 Jefferson Ct,Manchester,MN,72214,760-379-3306,nancy.roberts@outlook.com,,Hispanic or Latino,Unknown,Unknown,Self-pay,INS-873426,Dr. Paul Rodriguez,PROV99689
+PT-6269-70,Sarah,A,Nelson,1943-10-05,Unknown,7336 Monroe St,Centerville,MI,21011,(602) 323-5173,sarahnelson37@hotmail.com,AB+,Declined,Black or African American,Divorced,Medicaid,INS-965560,Dr. Matthew Williams,PROV18208
+PT-7349-66,Kimberly,,Lee,1971-02-15,Female,2079 Clinton Terrace,Riverside,AR,40733,463-570-1214,kimberly.lee@gmail.com,AB-,Hispanic or Latino,Declined,Single,Self-pay,INS-603835,Dr. Robert Jackson,PROV46258
+d5dfecf2,Donald,Q,Hill,1979-12-06,Female,4862 Pine Ct,Manchester,MN,28605,(306) 505-3788,dhill@yahoo.com,O+,Hispanic or Latino,White,Widowed,Private,INS-601717," Donald Wilson",PROV10567
+PT-4257-28,Kimberly,S,Thompson,1952-12-22,Male,744 Pine Ct,Clinton,PA,68062,,kimberlythompson61@outlook.com,O+,Unknown,Asian,Unknown,Self-pay,INS-257054," Mark Taylor",PROV93212
+e302ea82,Sarah,J,Green,1940-04-09,Unknown,9191 Spring Way,Newport,MD,97588,(626) 849-3153,,,Unknown,White,Separated,Self-pay,INS-482955,Dr. Thomas Baker,PROV82657
+PT-P94706,Donna,D,Hall,1983-07-10,Female,8250 Maple Blvd,Arlington,NJ,23242,(523) 614-1637,dhall@gmail.com,,Not Hispanic or Latino,American Indian or Alaska Native,Widowed,Private,INS-213826,Dr. Lisa Hill,PROV58548
+5063b0c1,Mary,Q,Brown,1948-01-08,Other,4045 Washington Rd,Manchester,CO,45256,7135405715,mbrown@outlook.com,,Unknown,Asian,Separated,Other,INS-821655," Kevin Gonzalez",PROV74189
+PT-4172-92,Deborah,,Adams,1950-07-09,Other,2934 Madison Ln,Bristol,AZ,50845,522-570-4931,deborahadams54@hotmail.com,,Declined,White,Separated,Private,INS-816786,Dr. William Jackson,PROV54799
+33c396c4,Deborah,W,Adams,1998-07-22,Unknown,1250 Elm Ln,Newport,IA,78084,599.924.6152,deborahadams97@aol.com,B-,Declined,Declined,Separated,Medicaid,INS-158677," Paul Thomas",PROV66650
+PT-P19313,Elizabeth,K,Turner,1975-11-24,Female,4252 Maple St,Fairview,NC,80179,(810) 858-5775,elizabeth.turner@gmail.com,,Declined,White,Married,Other,INS-705711," Dorothy Gonzalez",PROV69495
+f627c896,John,O,Johnson,1941-09-26,Other,1928 Hill Way,Milton,AK,47488,682-543-4053,jjohnson@hotmail.com,,Unknown,White,Divorced,Private,INS-706373," Christopher Phillips",PROV57340
+PT-P26480,David,D,Lopez,1978-07-01,Female,6839 River Blvd,Newport,SC,46925,543.504.4178,,,Not Hispanic or Latino,Asian,Married,Self-pay,INS-547956," Donna Wilson",PROV95967
+PT-8815-59,Deborah,B,Gonzalez,1998-07-23,Male,8823 Maple Way,Georgetown,LA,94257,493-582-6540,,AB-,Not Hispanic or Latino,Other,Married,Self-pay,INS-984701," Linda Walker",PROV70935
+PT-5814-49,Mary,E,Roberts,1956-07-01,Unknown,2835 Elm Ln,Lexington,GA,49143,(216) 723-3123,maryroberts32@aol.com,AB+,Hispanic or Latino,Asian,Widowed,Other,INS-525446," William Green",PROV77927
+PT-P70573,Melissa,L,Davis,1960-08-05,Other,6003 Pine Blvd,Manchester,IL,36595,979.562.8691,,,Not Hispanic or Latino,Declined,Widowed,Medicaid,INS-654121,Dr. Daniel Hall,PROV79353
+PT-4451-60,Emily,R,Carter,1993-11-16,Unknown,5803 Jefferson Pl,Riverside,WA,74518,(666) 333-3138,emilycarter11@icloud.com,A-,Unknown,Declined,Widowed,Medicaid,INS-557063,Dr. Richard Young,PROV69024
+PT-599844,Andrew,T,King,1982-02-28,Unknown,8087 Franklin Way,Burlington,CO,29773,841-466-7264,aking@gmail.com,O+,Not Hispanic or Latino,Other,Divorced,Medicaid,INS-864778,Dr. Matthew Clark,PROV97488
+PT-P88650,Richard,Q,Nelson,1958-09-18,Female,4821 Lake Way,Bristol,KY,67997,8463954064,richard.nelson@outlook.com,,Hispanic or Latino,Native Hawaiian or Other Pacific Islander,Married,Private,INS-394739,Dr. Lisa Allen,PROV31291
+PT-4274-62,Thomas,P,Allen,1946-04-15,Male,659 Maple Ave,Burlington,KS,74112,(238) 980-2054,tallen@gmail.com,A+,Hispanic or Latino,Black or African American,Widowed,Medicare,INS-613777,Dr. Christopher Mitchell,PROV73396
+PT-6021-23,Michael,,Gonzalez,1971-06-26,Male,7246 Lincoln Blvd,Salem,TN,31815,(822) 499-3507,,AB-,Declined,Other,Married,Self-pay,INS-327604,Dr. Michelle Harris,PROV47436
+PT-5949-22,Melissa,T,Parker,1967-02-11,Female,7858 Monroe Dr,Dayton,OK,46701,8446917811,mparker@hotmail.com,B+,Unknown,White,Unknown,Self-pay,INS-334296,Dr. Sarah Davis,PROV17550
+PT-988924,Kevin,C,Evans,1957-01-03,Female,4703 Highland Dr,Bristol,VT,25578,599-324-5786,kevinevans48@outlook.com,AB-,Not Hispanic or Latino,Multiple,Married,Self-pay,INS-424425,Dr. Michelle Wilson,PROV38628
+PT-P73242,Kenneth,Y,Brown,1965-03-18,Female,2007 Monroe Pl,Oxford,AL,40705,739-644-6741,kennethbrown57@gmail.com,A+,Unknown,Other,Widowed,Self-pay,INS-764868," Emily Adams",PROV60642
+PT-552798,Robert,M,Lopez,1972-11-25,Unknown,9986 Lake Ct,Manchester,ME,31711,648.851.2570,robertlopez28@icloud.com,A+,Declined,American Indian or Alaska Native,Unknown,Private,INS-321095,Dr. Betty Martinez,PROV16717
+PT-9224-97,Kevin,S,King,1982-10-23,Male,5774 Maple Ct,Dayton,DE,45402,461.990.2327,,O+,Unknown,Native Hawaiian or Other Pacific Islander,Single,Other,INS-526324,Dr. Paul Gonzalez,PROV20260
+bff72ac9,Anthony,G,Hill,1978-09-09,Female,1477 Main Ln,Greenville,OK,90263,2773736413,ahill@gmail.com,B-,Declined,American Indian or Alaska Native,Divorced,Medicare,INS-492038,Dr. Mary Harris,PROV18452
+PT-1905-52,Matthew,E,Nelson,1948-07-21,Unknown,7581 Meadow Ct,Arlington,IN,86974,625-396-5937,mnelson@gmail.com,A-,Unknown,White,Unknown,Medicare,INS-218095,Dr. Michelle Wilson,PROV90995
+PT-P22776,Kenneth,L,Johnson,1951-11-24,Unknown,6045 Forest St,Madison,WA,87844,750-535-4257,kenneth.johnson@aol.com,O-,Declined,Declined,Single,Other,INS-393498," Steven Martinez",PROV71675
+PT-8386-43,Christopher,M,Davis,2001-12-27,Unknown,3691 Pine Ave,Fairview,MI,80931,(360) 406-8533,christopherdavis23@yahoo.com,,Unknown,American Indian or Alaska Native,Separated,Private,INS-937692," William Lewis",PROV45779
+eba85f33,Robert,T,Wilson,1991-03-15,Male,6880 Spring Pl,Madison,FL,55576,575-603-1754,robertwilson19@icloud.com,,Unknown,Native Hawaiian or Other Pacific Islander,Divorced,Medicaid,INS-313894," Michael Parker",PROV16220
+PT-554851,Carol,C,Miller,1969-03-12,Male,3557 Adams Way,Centerville,OK,46627,476-682-2189,,O+,Unknown,White,Divorced,Private,INS-524659,Dr. George Harris,PROV69073
+PT-757001,Brian,C,Hill,1992-07-24,Other,5889 River Ln,Springfield,WI,89035,718.901.1539,brianhill36@icloud.com,,Not Hispanic or Latino,Multiple,Married,Other,INS-432966,Dr. Sandra King,PROV81763
+PT-4117-41,Jessica,O,Gonzalez,1987-04-28,Unknown,1448 Pine St,Arlington,RI,43912,9908932159,jgonzalez@aol.com,B-,Not Hispanic or Latino,Multiple,Married,Private,INS-670225," Joshua Perez",PROV53235
+969f2478,Joshua,Q,Jackson,2000-11-21,Female,8147 Lake Ave,Madison,TX,57237,8797097438,joshua.jackson@aol.com,AB-,Not Hispanic or Latino,Asian,Unknown,Other,INS-676296," Paul Anderson",PROV36599
+PT-387684,Jennifer,G,Carter,1972-09-15,Unknown,4241 River Rd,Salem,MO,80154,4389935597,jennifercarter17@icloud.com,A+,Hispanic or Latino,White,Widowed,Other,INS-631370," Joshua Williams",PROV96968
+PT-7024-81,Patricia,Y,Phillips,1991-05-20,Unknown,1656 Spring Pl,Clinton,NH,74483,(410) 855-7728,patriciaphillips53@outlook.com,AB-,Unknown,American Indian or Alaska Native,Married,Other,INS-700652,Dr. Matthew Williams,PROV66313
+PT-536607,Dorothy,F,Mitchell,1998-05-28,Other,5247 Main St,Arlington,TN,83926,985.768.7993,dorothymitchell59@hotmail.com,O-,Not Hispanic or Latino,Other,Separated,Medicare,INS-801321,Dr. Ashley Johnson,PROV12124
+15e3e5cf,Michelle,E,Anderson,1961-04-06,Male,7291 Madison Blvd,Milton,MI,25921,260.334.5018,,,Hispanic or Latino,Black or African American,Single,Self-pay,INS-708845,Dr. Margaret Parker,PROV81378
+PT-P33936,Robert,,Young,1990-11-27,Unknown,1007 Washington Way,Madison,NM,72323,6514141648,robertyoung44@outlook.com,O+,Hispanic or Latino,White,Unknown,Medicare,INS-887522,Dr. George Martin,PROV28318
+PT-P81340,Kenneth,G,Lopez,1992-06-26,Unknown,6022 Monroe Way,Auburn,MT,75093,845-677-9390,kennethlopez63@icloud.com,A-,Unknown,Black or African American,Divorced,Medicaid,INS-672507," Nancy Nelson",PROV26408
+PT-P58505,Margaret,U,Wilson,1999-02-22,Male,2599 Valley Way,Burlington,NY,54840,216.673.3521,margaret.wilson@outlook.com,AB+,Unknown,Black or African American,Married,Private,INS-957734," Steven Allen",PROV12175
+PT-P47210,Karen,,Rodriguez,1940-04-26,Female,1307 Clinton Ct,Salem,MA,78165,266.377.5796,krodriguez@yahoo.com,AB-,Declined,Asian,Widowed,Self-pay,INS-557823," Andrew Adams",PROV18394
+PT-P70008,Dorothy,Z,Martinez,1999-03-04,Male,1216 Spring Rd,Greenville,AZ,65989,(553) 641-3312,,O+,Hispanic or Latino,Declined,Separated,Private,INS-146363,Dr. Betty Hill,PROV65561
+PT-P51387,Robert,Q,Green,1994-09-14,Male,8619 Clinton St,Arlington,KS,74552,2465875544,,AB-,Unknown,Other,Single,Medicare,INS-509946," Robert Adams",PROV64282
+PT-563991,James,P,Campbell,1976-04-15,Unknown,7385 Park Dr,Newport,NY,58537,904-263-8042,jcampbell@yahoo.com,B+,Hispanic or Latino,Asian,Single,Other,INS-342036," Emily Phillips",PROV20886
+PT-4663-26,Nancy,D,Allen,1975-08-02,Unknown,3903 Valley Way,Springfield,MS,29304,656.229.9685,nallen@gmail.com,A+,Declined,White,Widowed,Private,INS-515564,Dr. Betty Carter,PROV20032
+PT-P47814,Sandra,H,Phillips,1994-10-13,Unknown,7812 Lake St,Salem,WV,24096,(755) 736-7973,sphillips@hotmail.com,AB-,Not Hispanic or Latino,Unknown,Divorced,Self-pay,INS-321661," Mary Martin",PROV60079
+092792ad,Ashley,Y,Hall,1956-06-21,Unknown,421 Highland Way,Burlington,HI,54875,3167982806,ashleyhall78@aol.com,A+,Declined,Unknown,Unknown,Medicaid,INS-564873," Joshua Parker",PROV38877
+PT-P33936,Susan,U,Smith,1958-03-28,Male,955 Forest Way,Clinton,AR,98321,573-622-6839,susansmith54@icloud.com,AB-,Hispanic or Latino,White,Single,Self-pay,INS-173032,Dr. Amanda White,PROV52395
+PT-P60216,Joshua,O,Parker,1941-03-17,Unknown,9517 Meadow Blvd,Georgetown,MD,68392,407-945-1378,joshua.parker@outlook.com,B-,Unknown,Native Hawaiian or Other Pacific Islander,Married,Private,INS-124162," Kevin Lopez",PROV48190
+d5dfecf2,Kenneth,M,Rodriguez,1980-04-24,Male,2658 Cedar Pl,Newport,WI,45223,(831) 434-1445,,,Not Hispanic or Latino,White,Widowed,Self-pay,INS-956085," Emily Taylor",PROV41136
+PT-P58505,Mary,K,Clark,1943-08-06,Male,1134 Franklin Ln,Georgetown,FL,49625,465.359.4565,maryclark28@icloud.com,,Declined,Declined,Separated,Medicaid,INS-794712," Michael Carter",PROV61080
+8800a303,Susan,W,Johnson,2003-05-11,Female,8824 Lincoln Blvd,Milton,SD,72027,,susanjohnson75@yahoo.com,,Unknown,Declined,Married,Self-pay,INS-579203," Ashley Parker",PROV60769
+PT-852132,Margaret,,Davis,1953-05-27,Unknown,5796 Forest Pl,Manchester,KY,29376,236.363.8754,mdavis@yahoo.com,,Hispanic or Latino,White,Single,Other,INS-320112," Matthew White",PROV58912
+PT-1533-60,Kenneth,,King,1982-09-05,Unknown,5421 Spring Ave,Franklin,CT,13964,986-430-3161,kennethking78@hotmail.com,O-,Declined,Declined,Widowed,Private,INS-513427,Dr. Donna Parker,PROV94663
+PT-317448,Mark,Q,Thompson,1970-10-09,Unknown,7517 Hill Blvd,Lexington,IA,56271,213-947-4863,mark.thompson@icloud.com,,Hispanic or Latino,Other,Separated,Medicare,INS-793854,Dr. Emily Robinson,PROV65429
+PT-P57821,Carol,R,Scott,1959-08-04,Male,9488 Franklin St,Georgetown,TN,11071,(984) 935-1597,,O+,Unknown,Multiple,Unknown,Other,INS-247085," Sandra Campbell",PROV83405
+a32ff68e,Matthew,B,Clark,1950-06-06,Female,5004 Spring Terrace,Clinton,NV,40171,(882) 306-7778,mclark@outlook.com,AB-,Not Hispanic or Latino,Native Hawaiian or Other Pacific Islander,Divorced,Medicare,INS-480007,Dr. John Thomas,PROV66184
+PT-4236-10,Steven,B,Davis,1983-03-19,Other,9221 Highland Dr,Franklin,TX,78246,816-351-3207,steven.davis@icloud.com,O+,Declined,Asian,Separated,Self-pay,INS-271941,Dr. Susan Adams,PROV97164
+cc969f36,Kimberly,P,Brown,2002-10-11,Male,2567 Highland Way,Dayton,CA,52386,589.897.4541,kimberlybrown62@hotmail.com,B+,Unknown,Native Hawaiian or Other Pacific Islander,Divorced,Private,INS-934558,Dr. Brian Martin,PROV70392
+PT-554851,Linda,H,Thomas,1987-03-12,Other,937 Adams Ave,Salem,NC,66604,(799) 938-8260,lindathomas73@outlook.com,,Declined,Other,Single,Other,INS-691577,Dr. Carol Robinson,PROV54991
+PT-801080,Melissa,J,Nelson,1963-01-16,Female,4427 Lake Ln,Springfield,ID,41737,758.273.7393,mnelson@yahoo.com,,Declined,Black or African American,Divorced,Other,INS-603691," Charles Davis",PROV55629
+PT-172184,Linda,T,Lee,1991-11-16,Other,4251 Lake Ct,Oxford,NC,27279,6808706547,linda.lee@gmail.com,,Declined,Unknown,Single,Medicaid,INS-701579," Linda Thomas",PROV58684
+PT-9530-65,Emily,G,Nelson,1977-06-06,Other,1725 Valley Terrace,Newport,NC,88774,8813759298,emily.nelson@hotmail.com,A-,Not Hispanic or Latino,Black or African American,Widowed,Private,INS-833903," Brian Lopez",PROV74487
+PT-P71403,Anthony,K,Hill,2005-03-16,Unknown,5380 Franklin Ct,Dayton,ND,86617,375-403-1273,,,Hispanic or Latino,Native Hawaiian or Other Pacific Islander,Divorced,Other,INS-492956," George Lee",PROV35594
+803a6a44,Christopher,Q,Taylor,1985-05-13,Unknown,9859 Madison Ln,Manchester,SD,74381,774.593.7307,ctaylor@icloud.com,A+,Hispanic or Latino,American Indian or Alaska Native,Single,Self-pay,INS-661893,Dr. Jennifer Moore,PROV10080
+b3f43ff6,Thomas,H,Green,1971-02-04,Male,2076 Spring Ln,Riverside,SD,66078,2423352293,thomasgreen54@icloud.com,,Not Hispanic or Latino,Black or African American,Single,Medicare,INS-446736,Dr. Joshua Johnson,PROV87813
+93772ebb,Matthew,B,Thomas,1988-03-22,Male,874 Highland Way,Salem,MA,16061,(336) 287-6639,mthomas@icloud.com,B-,Declined,Other,Unknown,Medicare,INS-773362," Michelle King",PROV86018
+PT-163670,Dorothy,K,Hall,1944-04-27,Unknown,3727 Jefferson Blvd,Fairview,NY,35842,2742402876,dorothy.hall@yahoo.com,B-,Not Hispanic or Latino,Other,Widowed,Medicaid,INS-920098," Karen Roberts",PROV33475
+PT-8851-49,Donna,K,Green,1943-05-23,Other,8177 Monroe Dr,Springfield,MN,46525,(515) 314-9537,donna.green@aol.com,O+,Declined,Asian,Single,Self-pay,INS-601893,Dr. Mark Johnson,PROV29358
+PT-9551-43,Michael,U,Taylor,1985-08-15,Other,8077 Clinton Ln,Milton,MS,59558,397.426.9182,michaeltaylor75@gmail.com,O-,Not Hispanic or Latino,Unknown,Separated,Self-pay,INS-174703," Mark Jackson",PROV13019
+PT-8808-37,Brian,G,Baker,1978-05-14,Unknown,1380 Hill Ave,Fairview,NY,85880,3513012909,brian.baker@gmail.com,B-,Hispanic or Latino,Native Hawaiian or Other Pacific Islander,Widowed,Other,INS-165142," Kenneth Smith",PROV59268
+PT-550086,Nancy,B,Martinez,1987-10-02,Female,4857 Adams Pl,Bristol,KS,47284,(637) 353-4856,nancy.martinez@gmail.com,,Unknown,Asian,Separated,Self-pay,INS-162622," Donna Jones",PROV81168
+PT-115724,Emily,E,Moore,1984-09-11,Unknown,3994 Valley Dr,Georgetown,FL,12197,(403) 907-2934,emilymoore67@aol.com,,Hispanic or Latino,Other,Unknown,Private,INS-889293,Dr. Anthony Clark,PROV41811
+277a4158,Joshua,E,Wright,1961-08-22,Male,7648 Meadow Blvd,Greenville,AK,35473,9384907997,joshuawright27@hotmail.com,,Declined,Black or African American,Unknown,Self-pay,INS-186429,Dr. Lisa Turner,PROV30756
+PT-P53316,Steven,M,Lewis,1971-08-11,Other,7173 Monroe St,Salem,NC,39579,5997569717,steven.lewis@outlook.com,B+,Not Hispanic or Latino,Unknown,Widowed,Self-pay,INS-162286,Dr. Ashley Jones,PROV27757
+PT-851680,Deborah,F,Johnson,1977-11-11,Female,6860 Jefferson Rd,Clinton,UT,54311,822.211.7269,deborahjohnson75@outlook.com,O+,Not Hispanic or Latino,American Indian or Alaska Native,Married,Private,INS-110361,Dr. Christopher Taylor,PROV35234
+769d45a1,Paul,O,Martin,2004-04-04,Other,3597 Main St,Springfield,NY,81478,(591) 569-1817,paul.martin@aol.com,,Not Hispanic or Latino,Black or African American,Unknown,Medicaid,INS-508861,Dr. Mary King,PROV64670
+PT-912153,George,,Anderson,1998-08-18,Female,7275 Cedar Rd,Georgetown,SD,96304,9839455370,ganderson@hotmail.com,A+,Not Hispanic or Latino,Asian,Unknown,Medicaid,INS-741277,Dr. Steven Wright,PROV16697
+PT-9445-36,Kevin,M,Wilson,1945-12-03,Other,3824 Highland St,Auburn,CO,85167,5046421585,kwilson@hotmail.com,A-,Unknown,Other,Single,Medicare,INS-441032,Dr. Steven Garcia,PROV47797
+PT-1924-59,Melissa,,Adams,1998-08-10,Unknown,451 River Rd,Dayton,NH,27604,3422107531,,A+,Not Hispanic or Latino,Asian,Divorced,Medicare,INS-842237,Dr. Jessica Taylor,PROV67924
+PT-310035,Dorothy,E,Hall,1989-08-26,Unknown,6974 Oak Dr,Dayton,MI,12572,(778) 235-1873,dorothy.hall@gmail.com,O+,Declined,Unknown,Single,Medicaid,INS-808242,Dr. Daniel Campbell,PROV99123
+PT-757001,Joseph,R,Thomas,1978-03-23,Unknown,4361 Washington Ct,Newport,IA,19474,(454) 800-7335,josephthomas30@hotmail.com,AB+,Unknown,Other,Divorced,Medicaid,INS-412769," Karen Lewis",PROV71342
+PT-P78290,Lisa,K,Carter,1969-02-15,Other,5001 Meadow Dr,Lexington,ME,75854,879-981-4784,,,Declined,Multiple,Separated,Private,INS-375979,Dr. Kevin Jones,PROV15587
+b4a9775f,Michelle,V,White,1955-05-01,Unknown,8081 Lincoln Ave,Centerville,ID,30292,(752) 933-5383,mwhite@hotmail.com,,Not Hispanic or Latino,Declined,Widowed,Self-pay,INS-595492," Lisa Gonzalez",PROV77428
+PT-7949-66,Sarah,E,Young,1957-05-15,Other,6951 Highland Ln,Franklin,SC,59972,(463) 572-3999,syoung@aol.com,,Not Hispanic or Latino,Other,Married,Medicare,INS-506802," Mary Green",PROV44428
+PT-4301-38,Michael,W,Jones,1991-01-08,Other,5157 River St,Manchester,DE,52371,7794124863,,AB+,Declined,Asian,Divorced,Medicare,INS-652109,Dr. Matthew Johnson,PROV68181
+PT-P34308,Kevin,I,Moore,1997-10-28,Unknown,6985 Adams Blvd,Fairview,AR,66998,9629358394,kevinmoore4@yahoo.com,,Unknown,Other,Separated,Self-pay,INS-663411," Joseph Thomas",PROV84681
+5e309130,Jessica,Z,Brown,1964-09-15,Unknown,7884 Clinton Blvd,Franklin,GA,60814,910.220.5368,jessica.brown@yahoo.com,,Not Hispanic or Latino,Declined,Divorced,Self-pay,INS-125845,Dr. Lisa Gonzalez,PROV12798
