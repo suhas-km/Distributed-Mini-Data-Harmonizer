@@ -15,7 +15,7 @@ The Distributed Mini Data Harmonizer is designed as a microservices architecture
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                   Python API Server                            │
-│                    (Flask/FastAPI)                             │
+│                       (FastAPI)                                │
 ├─────────────────────────────────────────────────────────────────┤
 │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐             │
 │  │   REST API  │  │ Job Manager │  │ File Handler│             │
@@ -46,8 +46,10 @@ The Distributed Mini Data Harmonizer is designed as a microservices architecture
 ### Technology Stack
 
 #### Core Technologies
-- **Python 3.8+**: REST API and job orchestration
-- **Go 1.19+**: Concurrent data processing
+- **Python 3.8+**: REST API and job orchestration with FastAPI
+- **SQLAlchemy**: ORM for database operations
+- **Pydantic**: Data validation and settings management
+- **Go 1.19+**: Concurrent data processing with worker pools
 - **SQLite**: Local database for job metadata
 - **File System**: Local storage for input/output files
 
@@ -448,28 +450,43 @@ var (
 
 ### Deployment Architecture
 
-#### Local Development Setup
-```bash
-# Terminal 1: Start Python API
-cd python-api
-python app.py
-# Runs on http://localhost:8080
-
-# Terminal 2: Start Go Worker
-cd go-worker
-go run main.go
-# Runs on http://localhost:8081
-
-# Terminal 3: Initialize SQLite database
-python scripts/init_db.py
+#### Development Environment
+```yaml
+# docker-compose.yml
+version: '3.8'
+services:
+  api:
+    build: ./python-api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+      - redis
+  
+  worker:
+    build: ./go-worker
+    ports:
+      - "8081:8081"
+    depends_on:
+      - database
+  
+  database:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: harmonizer
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+  
+  redis:
+    image: redis:6-alpine
 ```
 
-#### Simple Production Deployment
-- Single server deployment
-- Process managers (systemd, supervisor)
-- Basic reverse proxy (nginx - optional)
-- File-based backups
-- Simple monitoring with log files
+#### Production Considerations
+- Container orchestration (Kubernetes/Docker Swarm)
+- Load balancing and auto-scaling
+- Database clustering and replication
+- Backup and disaster recovery
+- CI/CD pipeline integration
 
 ### Design Decisions
 
