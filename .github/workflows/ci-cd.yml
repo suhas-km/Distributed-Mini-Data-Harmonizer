@@ -1,0 +1,228 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  # Test Python API
+  test-python-api:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Install dependencies
+      run: |
+        cd python-api
+        pip install -r requirements.txt
+        
+    - name: Run Python tests
+      run: |
+        cd python-api
+        python -m pytest tests/ -v
+        
+    - name: Run linting
+      run: |
+        cd python-api
+        pip install flake8
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+  # Test Go Worker
+  test-go-worker:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.21'
+        
+    - name: Run Go tests
+      run: |
+        cd go-worker
+        go test ./...
+        
+    - name: Run Go linting
+      uses: golangci/golangci-lint-action@v3
+      with:
+        working-directory: go-worker
+        version: latest
+
+  # Build and test Docker images
+  build-and-test:
+    runs-on: ubuntu-latest
+    needs: [test-python-api, test-go-worker]
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      
+    - name: Build Python API image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./python-api
+        push: false
+        tags: python-api:test
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        
+    - name: Build Go Worker image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./go-worker
+        push: false
+        tags: go-worker:test
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        
+    - name: Build UI image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./ui
+        push: false
+        tags: web-ui:test
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+
+  # End-to-End Testing
+  e2e-test:
+    runs-on: ubuntu-latest
+    needs: [build-and-test]
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Install test dependencies
+      run: |
+        pip install requests pandas
+        
+    - name: Generate sample data
+      run: |
+        python scripts/generate_sample_data.py
+        
+    - name: Run end-to-end tests
+      run: |
+        python scripts/test_e2e.py --no-cleanup
+      timeout-minutes: 15
+      
+    - name: Cleanup
+      if: always()
+      run: |
+        docker-compose down -v
+        docker system prune -f
+
+  # Security scanning
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+        
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v2
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
+
+  # Deploy (only on main branch)
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [e2e-test, security-scan]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Log in to Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Extract metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=sha
+          
+    - name: Build and push Python API
+      uses: docker/build-push-action@v5
+      with:
+        context: ./python-api
+        push: true
+        tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/python-api:${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        
+    - name: Build and push Go Worker
+      uses: docker/build-push-action@v5
+      with:
+        context: ./go-worker
+        push: true
+        tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/go-worker:${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        
+    - name: Build and push UI
+      uses: docker/build-push-action@v5
+      with:
+        context: ./ui
+        push: true
+        tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/web-ui:${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+
+  # Performance testing (optional)
+  performance-test:
+    runs-on: ubuntu-latest
+    needs: [e2e-test]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Install performance test dependencies
+      run: |
+        pip install locust requests
+        
+    - name: Run performance tests
+      run: |
+        # Start services
+        docker-compose up -d
+        sleep 30
+        
+        # Run basic load test
+        locust --headless --users 10 --spawn-rate 2 --run-time 60s --host http://localhost:8080
+        
+        # Cleanup
+        docker-compose down
+      timeout-minutes: 10

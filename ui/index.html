@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Harmonizer</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">
+                <span class="icon">🔄</span>
+                Data Harmonizer
+            </h1>
+            <p class="subtitle">Healthcare Data Processing Pipeline</p>
+        </header>
+
+        <main class="main">
+            <!-- Upload Section -->
+            <section class="card upload-section">
+                <h2>Upload Data File</h2>
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <div class="upload-icon">📁</div>
+                        <p>Drag & drop your CSV file here or <span class="upload-link">browse</span></p>
+                        <input type="file" id="fileInput" accept=".csv" hidden>
+                        <p class="upload-hint">Supported: patients, vitals, medications, lab_results</p>
+                    </div>
+                </div>
+                
+                <div class="file-info" id="fileInfo" style="display: none;">
+                    <div class="file-details">
+                        <span class="file-name" id="fileName"></span>
+                        <span class="file-size" id="fileSize"></span>
+                    </div>
+                    <button class="btn btn-primary" id="uploadBtn">Process File</button>
+                </div>
+            </section>
+
+            <!-- Jobs Section -->
+            <section class="card jobs-section">
+                <div class="section-header">
+                    <h2>Processing Jobs</h2>
+                    <button class="btn btn-secondary" id="refreshBtn">Refresh</button>
+                </div>
+                
+                <div class="jobs-list" id="jobsList">
+                    <div class="empty-state">
+                        <div class="empty-icon">📋</div>
+                        <p>No jobs yet. Upload a file to get started.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Status Section -->
+            <section class="card status-section">
+                <h2>System Status</h2>
+                <div class="status-grid">
+                    <div class="status-item">
+                        <div class="status-indicator" id="apiStatus"></div>
+                        <span>Python API</span>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-indicator" id="workerStatus"></div>
+                        <span>Go Worker</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="loading-spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

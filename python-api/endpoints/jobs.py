@@ -44,7 +44,7 @@ async def process_job_async(job_id: str, db: Session):
         # Send job to Go worker
         async with httpx.AsyncClient() as client:
             response = await client.post(
-                f"{settings.WORKER_URL}/process",
+                f"{settings.WORKER_URL}/api/v1/jobs",
                 json={
                     "job_id": job.id,
                     "input_file": job.input_file,
@@ -184,6 +184,58 @@ async def get_job_status(job_id: str, db: Session = Depends(get_db)):
             status_code=404,
             detail=f"Job {job_id} not found"
         )
+    
+    return job
+
+
+@router.post(
+    "/{job_id}/status",
+    response_model=JobStatusResponse,
+    responses={404: {"model": ErrorResponse, "description": "Job not found"}}
+)
+async def update_job_status(
+    job_id: str, 
+    status_update: dict,
+    db: Session = Depends(get_db)
+):
+    """
+    Update job status (called by Go worker).
+    
+    Args:
+        job_id: ID of the job
+        status_update: Status update data from Go worker
+        db: Database session
+        
+    Returns:
+        JobStatusResponse: Updated job status details
+    """
+    job = db.query(Job).filter(Job.id == job_id).first()
+    if not job:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Job {job_id} not found"
+        )
+    
+    # Update job fields based on status update
+    if "status" in status_update:
+        if status_update["status"] == "completed":
+            job.status = JobStatus.COMPLETED
+            job.completed_at = datetime.utcnow()
+        elif status_update["status"] == "failed":
+            job.status = JobStatus.FAILED
+            job.completed_at = datetime.utcnow()
+        elif status_update["status"] == "processing":
+            job.status = JobStatus.PROCESSING
+    
+    if "output_file" in status_update:
+        job.output_file = status_update["output_file"]
+    
+    if "error_message" in status_update:
+        job.error_message = status_update["error_message"]
+    
+    job.updated_at = datetime.utcnow()
+    db.commit()
+    db.refresh(job)
     
     return job
 

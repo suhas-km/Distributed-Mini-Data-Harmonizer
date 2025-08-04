@@ -56,7 +56,7 @@ func TestPoolMultipleJobs(t *testing.T) {
 
 	for i := 0; i < jobCount; i++ {
 		jobs[i] = model.HarmonizationJob{
-			JobID:            fmt.Sprintf("test-job-%d", i+1),
+			JobID:             fmt.Sprintf("test-job-%d", i+1),
 			InputFile:         "test-input.csv",
 			HarmonizationType: "generic",
 			Result:            make(chan model.JobResult, 1),

@@ -1,0 +1,109 @@
+version: '3.8'
+
+services:
+  # Python API Server
+  python-api:
+    build:
+      context: ./python-api
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=sqlite:///./data/harmonizer.db
+      - UPLOADS_DIR=/app/uploads
+      - RESULTS_DIR=/app/results
+      - GO_WORKER_URL=http://go-worker:8081
+    volumes:
+      - ./data:/app/data
+      - ./uploads:/app/uploads
+      - ./results:/app/results
+    depends_on:
+      - go-worker
+    networks:
+      - harmonizer-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Go Worker Service
+  go-worker:
+    build:
+      context: ./go-worker
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - PORT=8081
+      - HOST=0.0.0.0
+      - WORKER_COUNT=3
+      - QUEUE_SIZE=100
+      - INPUT_DIR=/app/uploads
+      - OUTPUT_DIR=/app/results
+      - PYTHON_API_URL=http://python-api:8080/api/v1
+    volumes:
+      - ./uploads:/app/uploads
+      - ./results:/app/results
+    networks:
+      - harmonizer-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8081/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Web UI
+  web-ui:
+    build:
+      context: ./ui
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - python-api
+      - go-worker
+    networks:
+      - harmonizer-network
+
+  # Prometheus for monitoring
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - harmonizer-network
+
+  # Grafana for visualization (optional)
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+    depends_on:
+      - prometheus
+    networks:
+      - harmonizer-network
+
+networks:
+  harmonizer-network:
+    driver: bridge
+
+volumes:
+  prometheus_data:
+  grafana_data:

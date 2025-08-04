@@ -22,8 +22,8 @@ class Settings(BaseSettings):
     DEBUG: bool = Field(default=True)
     
     # File paths
-    UPLOAD_DIR: str = Field(default=str(BASE_DIR / "uploads"))
-    RESULTS_DIR: str = Field(default=str(BASE_DIR / "results"))
+    UPLOAD_DIR: str = Field(default="/app/uploads")
+    RESULTS_DIR: str = Field(default="/app/results")
     
     # Database settings
     DATABASE_URL: str = Field(
@@ -31,7 +31,7 @@ class Settings(BaseSettings):
     )
     
     # Worker settings
-    WORKER_URL: str = Field(default="http://localhost:8081")
+    WORKER_URL: str = "http://go-worker:8081"
     MAX_CONCURRENT_JOBS: int = Field(default=3)
     
     # File settings
