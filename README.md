@@ -1,6 +1,6 @@
 # Distributed Mini Data Harmonizer
 
-A distributed data processing pipeline that combines Python orchestration with Go workers to harmonize healthcare data. This project demonstrates modern distributed system patterns, concurrent processing, and inter-service communication.
+A distributed data processing pipeline that combines Python orchestration with Go workers to harmonize healthcare data. This project demonstrates modern distributed system patterns, concurrent processing, and inter-service communication in a local environment.
 
 ## 🏗️ Architecture Overview
 
@@ -33,10 +33,11 @@ A distributed data processing pipeline that combines Python orchestration with G
 
 ## 📋 Prerequisites
 
-- **Go**: 1.19 or higher
-- **Python**: 3.8 or higher
-- **Database**: SQLite (development) or PostgreSQL (production)
+- **Docker**: 20.10 or higher
+- **Docker Compose**: 2.0 or higher
 - **Git**: For version control
+
+*Note: Direct installation of Go and Python is not required as the application runs in Docker containers.*
 
 ## 🛠️ Installation
 
@@ -46,96 +47,104 @@ git clone https://github.com/yourusername/Distributed-Mini-Data-Harmonizer.git
 cd Distributed-Mini-Data-Harmonizer
 ```
 
-### 2. Set Up Python Environment
-```bash
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+### 2. One-Command Setup
+The project includes a startup script that creates necessary directories, builds Docker images, and starts all services:
 
-# Install dependencies
-pip install -r requirements.txt
+```bash
+./start.sh
 ```
 
-### 3. Set Up Go Environment
-```bash
-cd go-worker
-go mod download
-go build -o worker ./cmd/worker
-```
+This script will:
+- Create required directories (uploads, results, data)
+- Build and start all Docker containers
+- Configure networking between services
+- Initialize the database
 
-### 4. Initialize Database
-```bash
-# Run database migrations
-python scripts/init_db.py
-```
-
-### 5. Prepare Sample Data
-```bash
-# Generate mock healthcare data
-python scripts/generate_sample_data.py
-```
+### 3. Sample Data
+Sample healthcare data is available in the `sample_data/` directory, including:
+- patients.csv - Patient demographic information
+- vitals.csv - Patient vital signs
+- medications.csv - Medication records
+- lab_results.csv - Laboratory test results
 
 ## 🎯 Usage
 
-### Start the Services
+### Access the Services
 
-1. **Start the Go Worker**:
-```bash
-cd go-worker
-./worker --port=8081
-```
+After running `./start.sh`, the following services are available:
 
-2. **Start the Python API**:
-```bash
-python app.py
-```
+- **Web UI**: http://localhost:8082
+- **API**: http://localhost:8080
+- **API Documentation**: http://localhost:8080/docs
+- **Go Worker**: http://localhost:8081
+- **Prometheus**: http://localhost:9090
+- **Grafana**: http://localhost:3001
 
-### Submit a Job
+### Using the Web UI
+
+1. Navigate to http://localhost:8082
+2. Upload a file for processing
+3. Select the harmonization type
+4. Submit the job and monitor progress
+
+### Using the API Directly
+
+#### Submit a Job
 
 ```bash
 # Upload a file for processing
-curl -X POST http://localhost:8080/api/jobs \
+curl -X POST http://localhost:8080/api/v1/jobs/ \
   -F "file=@sample_data/patients.csv" \
-  -F "operation=harmonize"
+  -F "harmonization_type=patients"
 ```
 
-### Check Job Status
+#### Check Job Status
 
 ```bash
 # Get job status
-curl http://localhost:8080/api/jobs/{job_id}/status
+curl http://localhost:8080/api/v1/jobs/{job_id}
 ```
 
-### Retrieve Results
+#### List All Jobs
+
+```bash
+# Get all jobs
+curl http://localhost:8080/api/v1/jobs/
+```
+
+#### Retrieve Results
 
 ```bash
 # Download processed file
-curl http://localhost:8080/api/jobs/{job_id}/result -o result.csv
+curl http://localhost:8080/api/v1/jobs/{job_id}/result -o result.csv
 ```
 
 ## 🧪 Testing
 
 ### Run Unit Tests
 ```bash
-# Python tests
-pytest tests/
+# Python tests (inside container)
+docker compose exec python-api pytest tests/
 
-# Go tests
-cd go-worker
-go test ./...
+# Go tests (inside container)
+docker compose exec go-worker go test ./...
 ```
 
 ### Run Integration Tests
 ```bash
 # End-to-end pipeline test
-python tests/integration/test_pipeline.py
+docker compose exec python-api python tests/integration/test_pipeline.py
 ```
 
 ## 📊 Monitoring
 
-- **Logs**: Check `logs/` directory for application logs
-- **Metrics**: Access metrics at `http://localhost:8080/metrics`
-- **Health Check**: `http://localhost:8080/health`
+- **Logs**: View logs with `docker compose logs -f [service-name]`
+- **Health Checks**: 
+  - Python API: `http://localhost:8080/health`
+  - Go Worker: `http://localhost:8081/health`
+- **Metrics**: 
+  - Prometheus: `http://localhost:9090`
+  - Grafana: `http://localhost:3001` (admin/admin)
 
 ## 🤝 Contributing
 
@@ -159,9 +168,11 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 
 - **Backend**: Python with FastAPI and SQLAlchemy ORM
 - **Worker**: Go with goroutines and worker pools
-- **Database**: SQLite (local development)
+- **Database**: SQLite (file-based)
 - **API Documentation**: OpenAPI/Swagger
-- **Monitoring**: Structured logging, health checks
+- **Monitoring**: Prometheus, Grafana, structured logging
+- **Containerization**: Docker, Docker Compose
+- **UI**: Simple HTML/CSS/JS with Nginx
 
 ## 📈 Performance
 
@@ -186,31 +197,65 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
    - Implement health check endpoints
    - Create basic metrics collection
 
-4. **Phase 4**: Time series data processing
-   - Add support for healthcare time series data
-   - Implement data aggregation functions
-   - Add timestamp normalization
+4. **Phase 4**: Data processing
+   - Implement various data harmonization processors
+   - Add support for different healthcare data types
+   - Create file handling utilities
 
-5. **Phase 5**: CI/CD and testing
-   - Create GitHub Actions workflow
-   - Implement comprehensive testing
-   - Add Makefile for common tasks
+5. **Phase 5**: Integration and deployment
+   - Implement Docker Compose orchestration
+   - Create startup script for one-command deployment
+   - Add minimal UI for job submission and monitoring
 
-## 🔒 License
+## 🔧 Troubleshooting
+
+### Common Issues
+
+#### File Upload Issues
+- **Problem**: Go worker cannot find uploaded files
+- **Solution**: Ensure the `uploads` directory exists and is properly mounted in both containers. The startup script creates this directory automatically.
+
+#### Container Communication
+- **Problem**: Python API cannot connect to Go worker
+- **Solution**: Use the Docker service name (`go-worker`) instead of `localhost` in the Python API configuration.
+
+#### Job Status Updates
+- **Problem**: Go worker receives 405 Method Not Allowed error when updating job status
+- **Solution**: Ensure the Python API has a POST endpoint for job status updates at `/api/v1/jobs/{job_id}/status`.
+
+#### Docker Volume Permissions
+- **Problem**: Permission denied when accessing mounted volumes
+- **Solution**: Ensure the host directories have appropriate permissions (e.g., `chmod -R 777 uploads results data`).
+
+#### Port Conflicts
+- **Problem**: Services fail to start due to port conflicts
+- **Solution**: Check if other applications are using the same ports and modify the Docker Compose file if needed.
+
+### Debugging Commands
+
+```bash
+# View logs for a specific service
+docker compose logs -f python-api
+
+# Check container status
+docker compose ps
+
+# Restart a specific service
+docker compose restart go-worker
+
+# Rebuild and restart all services
+docker compose up -d --build
+```
+
+## License
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
-## 👥 Authors
+## Authors
 
 - **Suhas KM** - *Initial work* - [Suhas KM](https://github.com/suhas-km)
 
-## 🙏 Acknowledgments
-
-- Healthcare data processing patterns
-- Go concurrency best practices
-- Distributed system design principles
-
-## 📞 Support
+## Support
 
 If you have questions or need help:
 - Open an issue on GitHub
